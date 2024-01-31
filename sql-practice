@@ -2,3 +2,21 @@ select first_name, last_name, gender From patients where gender = 'M';
 select first_name, last_name From patients where allergies is null;
 select first_name from patients where first_name like 'C%';
 SELECT first_name, last_name from patients where weight between 100 and 120;
+update patients set allergies = 'NKA' where allergies is null;
+select CONCAT(first_name, ' ', last_name) AS full_name from patients;
+SELECT first_name, last_name, province_name from patients JOIN province_names on patients.province_id = province_names.province_id;
+SELECT COUNT(*) AS total_patients FROM patients WHERE YEAR(birth_date) = 2010;
+SELECT first_name, last_name, MAX(height) from patients;
+SELECT * FROM patients where patient_id IN (1,45,534,879,1000);
+SELECT COUNT(*) FROM admissions;
+SELECT * from admissions where admissions.admission_date = admissions.discharge_date;
+SELECT patient_id, COUNT(*) FROM ADMISSIONS where patient_id = 579;
+SELECT DISTINCT city from patients where province_id = 'NS';
+select first_name, last_name, birth_date FROM patients where height > 160 and weight > 70;
+select first_name, last_name, allergies from patients where city = 'Hamilton' and allergies is not null;
+select distinct year(birth_date) as birth_year from patients order by birth_year; 
+select first_name from patients group by first_name having count(first_name) = 1;
+SELECT patient_id, first_name from patients where first_name LIKE 's%s' AND len(first_name) >= 6;
+select patients.patient_id, first_name, last_name from patients JOIN admissions 
+on patients.patient_id = admissions.patient_id WHERE diagnosis = 'Dementia';
+
