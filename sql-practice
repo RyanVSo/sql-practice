@@ -1,3 +1,4 @@
 select first_name, last_name, gender From patients where gender = 'M';
 select first_name, last_name From patients where allergies is null;
 select first_name from patients where first_name like 'C%';
+SELECT first_name, last_name from patients where weight between 100 and 120;
