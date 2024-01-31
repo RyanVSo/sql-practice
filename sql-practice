@@ -24,3 +24,4 @@ select (select count(*) from patients where gender = 'M') as male_count,
 	(select count(*) from patients where gender = 'F') as female_count;
 select first_name, last_name, allergies from patients where allergies = 'Penicillin' 
 	or allergies = 'Morphine' order by allergies, first_name, last_name asc;
+select patient_id, diagnosis from admissions group by patient_id, diagnosis having count(*) > 1;
