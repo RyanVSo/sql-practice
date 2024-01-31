@@ -19,4 +19,8 @@ select first_name from patients group by first_name having count(first_name) = 1
 SELECT patient_id, first_name from patients where first_name LIKE 's%s' AND len(first_name) >= 6;
 select patients.patient_id, first_name, last_name from patients JOIN admissions 
 on patients.patient_id = admissions.patient_id WHERE diagnosis = 'Dementia';
-
+select first_name from patients order by len(first_name), first_name;
+select (select count(*) from patients where gender = 'M') as male_count,
+	(select count(*) from patients where gender = 'F') as female_count;
+select first_name, last_name, allergies from patients where allergies = 'Penicillin' 
+	or allergies = 'Morphine' order by allergies, first_name, last_name asc;
