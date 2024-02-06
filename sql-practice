@@ -210,3 +210,41 @@ select
 from admissions
 group by day_of_month
 order by admissions_count desc;
+
+select *
+from admissions
+where patient_id = 542
+group by patient_id
+having max(admission_date);
+
+select
+  patient_id,
+  attending_doctor_id,
+  diagnosis
+from admissions
+where
+  (
+    attending_doctor_id in (1, 5, 19)
+    and patient_id % 2 != 0
+  )
+  or (
+    attending_doctor_id like '%2%'
+    and len(patient_id) = 3
+  );
+
+select
+  first_name,
+  last_name,
+  count(*) as admissions_total
+from admissions a
+  join doctors ph on ph.doctor_id = a.attending_doctor_id
+group by attending_doctor_id;
+
+select
+  doctor_id,
+  first_name || ' ' || last_name as full_name,
+  min(admission_date) as first_admission_date,
+  max(admission_date) as last_admission_date
+from admissions a
+  join doctors ph on a.attending_doctor_id = ph.doctor_id
+group by doctor_id;
